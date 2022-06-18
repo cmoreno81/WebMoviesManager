@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Movies Manager</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/MoviesManager/css/movies.css">   
+    </head>
+    <body>
+        <section class="content">
+            <h1>Movies Manager</h1>
+            <a href="insertartitulo.jsp">
+                <div class="field">
+                    <input type="submit" value="Insertar">
+                </div>
+            </a><br>
+            <form action="MoviesList" method="POST">
+                <div class="field">
+                    <input type="submit" value="Buscar todos" name = "accion">
+                </div>
+            </form>
+            <br>
+            <form action="MoviesList" method="POST">
+                <div class="field">
+                    <label for="id">Filtrar por: </label>
+                    <select type="text" name="m_formato" id="formato"><br/>
+                        <option value="Peliculas">Películas</option>
+                        <option value="Series">Series</option>
+                        <option value="Documentales">Documentales</option>
+                    </select>
+                    <input type="submit" value="Buscar vistas" name = "accion">
+                    <input type="submit" value="Buscar pendientes" name = "accion">
+                </div> 
+            </form>
+            <br>
+        </section>
+    </body>
+</html>
