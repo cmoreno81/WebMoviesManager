@@ -11,6 +11,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <link rel="stylesheet" type="text/css" href="/MoviesManager/css/movies.css">   
     </head>
     <body>
+        <c:if test="${mm.status !=null}">
+                <div class="${ (mm.errors)?'error':'info'}" disabled></div>
+            </c:if>
         <section class="content">
             <h1>Movies Manager</h1>
             <a href="insertartitulo.jsp">

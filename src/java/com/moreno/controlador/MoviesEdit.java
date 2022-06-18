@@ -81,14 +81,14 @@ public class MoviesEdit extends HttpServlet {
             }
         } catch (NumberFormatException ex) {
             mm.setErrors(true);
-            mm.setStatus("Valoracion '" + valoracion + "' no es un número válido");
-        } catch (Exception ex) {
+            mm.setStatus("Valoración '" + valoracion + "' no es un número válido");
+        } catch (IOException | ServletException ex) {
             Throwable cause = ex.getCause();
             mm.setErrors(true);
             if (cause instanceof ConstraintViolationException) {
-                StringBuilder status = new StringBuilder("Error creando un título ");
+                StringBuilder status = new StringBuilder("Error editando un título. ");
                 ConstraintViolationException e = (ConstraintViolationException) cause;
-                e.getConstraintViolations().stream().forEach(v -> status.append(v.getMessage() + " "));
+                e.getConstraintViolations().stream().forEach(v -> status.append(v.getMessage()).append(" "));
                 mm.setStatus(status.toString());
             } else if (cause instanceof OptimisticLockException) {
                 mm.setStatus("El título ha sido modificado por otro usuario.");
@@ -127,15 +127,5 @@ public class MoviesEdit extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

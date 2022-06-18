@@ -22,29 +22,35 @@
         <section class="content">
             <div class="col-md-8">
                 <table aling = "center" border="1" class = "table">
-                    <tr>
-                        <th></th>
-                        <th>Id</th>
-                        <th>Formato</th>
-                        <th>Titulo</th>
-                        <th>Genero</th>
-                        <th>Valoración</th>
-                        <th>Visto</th>
-                        <th></th>
-                    </tr>
-
-                    <c:forEach items="${resultados}" var="movie">
-                        <tr>
-                            <td></td>
-                            <td>${movie.id}</td>
-                            <td>${movie.formato}</td>
-                            <td>${movie.titulo}</td>
-                            <td>${movie.genero}</td>
-                            <td>${movie.valoracion}</td>
-                            <td>${movie.visto}</td> 
-                            <td></td>    
-                        </tr>    
-                    </c:forEach> 
+                    <c:choose>
+                        <c:when test="${!mm.errors}">
+                            <tr>
+                                <th></th>
+                                <th>Id</th>
+                                <th>Formato</th>
+                                <th>Titulo</th>
+                                <th>Genero</th>
+                                <th>Valoración</th>
+                                <th>Visto</th>
+                                <th></th>
+                            </tr>
+                            <c:forEach items="${resultados}" var="movie">
+                                <tr>
+                                    <td></td>
+                                    <td>${movie.id}</td>
+                                    <td>${movie.formato}</td>
+                                    <td>${movie.titulo}</td>
+                                    <td>${movie.genero}</td>
+                                    <td>${movie.valoracion}</td>
+                                    <td>${movie.visto}</td> 
+                                    <td></td>    
+                                </tr>    
+                            </c:forEach> 
+                        </c:when>
+                        <c:otherwise> 
+                            <div class ='error'> ${mm.status}</div>
+                        </c:otherwise>
+                    </c:choose>
                 </table>         
             </div>
         </section>
@@ -55,13 +61,13 @@
                 <label>ID: </label>
                 <form action="MoviesEdit" method="POST">
                     <div class="field">
-                        <input type="text" id="id" name="m_id" value="${mm.movie.id}" required>
+                        <input type="number" id="id" name="m_id" value="${mm.movie.id}" required>
                         <input type="submit" value="Editar" name = "accion">
                     </div>
                 </form>
                 <form action="MoviesEdit" method="POST">
                     <div class="field">
-                        <input type="text" id="id" name="m_id" value="${mm.movie.id}" required>
+                        <input type="number" id="id" name="m_id" value="${mm.movie.id}" required>
                         <input type="submit" value="Borrar" name="accion">
                     </div>
                 </form>

@@ -92,20 +92,17 @@ public class MoviesList extends HttpServlet {
         switch (accion) {
             case "Buscar todos":
                 resultados = mm.findAllMovies();
-                if (!resultados.isEmpty()) {
-                    mm.setMovies(resultados);
-                } else {
-                    mm.setStatus("No exiten títulos en la base de datos");
-                    mm.setErrors(true);
-                }
+                isResults(resultados);
                 request.setAttribute("resultados", resultados);
                 request.getRequestDispatcher("listar.jsp").forward(request, response);
                 break;
             case "Buscar vistas":
+                isResults(resultados);
                 request.setAttribute("resultados", resultados);
                 request.getRequestDispatcher("listar.jsp").forward(request, response);
                 break;
             case "Buscar pendientes":
+                isResults(resultados);
                 request.setAttribute("resultados", resultados);
                 request.getRequestDispatcher("listar.jsp").forward(request, response);
                 break;
@@ -113,14 +110,13 @@ public class MoviesList extends HttpServlet {
 
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    private void isResults(List<Movies> resultados) {
+        if (!resultados.isEmpty()) {
+            mm.setMovies(resultados);
+        } else {
+            mm.setStatus("No existen títulos en la base de datos.");
+            mm.setErrors(true);
+        }
+    }
 
 }

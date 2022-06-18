@@ -23,7 +23,7 @@
                         <div class="field">
                             <label class = "field label" for="id">Formato:</label>
                             <select type="text" name="m_formato" id="formato"><br/>
-                                <option value="Peliculas">Películas</option>
+                                <option value="Películas">Películas</option>
                                 <option value="Series">Series</option>
                                 <option value="Documentales">Documentales</option>
                             </select>                         
@@ -34,20 +34,20 @@
                         </div>
                         <div class="field">
                             <label class = "field label">Género:</label>
-                            <select class="form-control" id="genero" name="m_genero2">
+                            <!-- <select class="form-control" id="genero" name="m_genero2">
                                 <c:forEach items="${mm.genero.values}" var="genero">
-                                    <option value="${genero}">${genero.getGenero()}</option>
+                                    <option value="${genero}">${mm.genero.value}</option>
                                 </c:foreach>
-                            </select>
+                            </select>-->
                              <select type="text" name="m_genero" id="genero"><br/>
-                                <option value="${mm.genero.ACCION}">Acción</option>
-                                <option value="${mm.genero.AVENTURAS}">Aventuras</option>
-                                <option value="${mm.genero.BELICA}">Bélica</option>
-                                <option value="${mm.genero.CIENCIA_FICCION}">Ciencia Ficción</option>
-                                <option value="${mm.genero.COMEDIA}">Comedia</option>
-                                <option value="${mm.genero.DRAMA}">Drama</option>
-                                <option value="${mm.genero.ROMANTICA}">Romántica</option>
-                                <option value="${mm.genero.TERROR}">Terror</option>
+                                <option value="Acción">Acción</option>
+                                <option value="Aventuras">Aventuras</option>
+                                <option value="Bélica">Bélica</option>
+                                <option value="Ciencia Ficción">Ciencia Ficción</option>
+                                <option value="Comedia">Comedia</option>
+                                <option value="Drama">Drama</option>
+                                <option value="Romántica">Romántica</option>
+                                <option value="Terror">Terror</option>
                             </select>
                         </div>
                         <div class="field">

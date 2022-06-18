@@ -82,7 +82,7 @@ public class InsertMovies extends HttpServlet {
         
         HttpServletRequest req = (HttpServletRequest) request;
         Integer valoracion = 0;
-        String titulo = req.getParameter("m_titulo"); // name del jsp
+        String titulo = req.getParameter("m_titulo"); // 'name' del jsp
         String genero = req.getParameter("m_genero");
         valoracion = (!req.getParameter("m_valoracion").equals("")) ? Integer.parseInt(req.getParameter("m_valoracion")) : valoracion;
         boolean visto = Boolean.valueOf(request.getParameter("m_visto"));
@@ -97,13 +97,13 @@ public class InsertMovies extends HttpServlet {
         } catch (NumberFormatException ex) {
             mm.setErrors(true);
             mm.setStatus("Valoracion '" + valoracion + "' no es un número válido");
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             Throwable cause = ex.getCause();
             mm.setErrors(true);
             if (cause instanceof ConstraintViolationException) {
-                StringBuilder status = new StringBuilder("Error creando un título ");
+                StringBuilder status = new StringBuilder("Error creando un título. ");
                 ConstraintViolationException e = (ConstraintViolationException) cause;
-                e.getConstraintViolations().stream().forEach(v -> status.append(v.getMessage() + " "));
+                e.getConstraintViolations().stream().forEach(v -> status.append(v.getMessage()).append(" "));
                 mm.setStatus(status.toString());
             } else if (cause instanceof OptimisticLockException) {
                 mm.setStatus("El título ha sido modificado por otro usuario.");
