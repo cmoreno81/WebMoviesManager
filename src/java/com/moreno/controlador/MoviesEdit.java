@@ -44,6 +44,7 @@ public class MoviesEdit extends HttpServlet {
         Movies movie = mm.findMovie(id);
         if (movie == null) {
             mm.setStatus("Registro '" + mid + "' no encontrado.");
+            response.setStatus(1);
         } else {
             mm.setMovie(movie);
         }
@@ -73,9 +74,13 @@ public class MoviesEdit extends HttpServlet {
                     request.getRequestDispatcher("index.html").forward(request, response);
                     break;
                 case "Borrar":
-                    mm.delete(movie);
-                    mm.setStatus("Registro borrado correctamente.");
-                    request.getRequestDispatcher("index.html").forward(request, response);
+                    if (movie != null) {
+                        mm.delete(movie);
+                        mm.setStatus("Registro borrado correctamente.");
+                        request.getRequestDispatcher("index.html").forward(request, response);
+                    } else {
+                        request.getRequestDispatcher("moviesedit.jsp").forward(request, response);
+                    }
                     break;
 
             }

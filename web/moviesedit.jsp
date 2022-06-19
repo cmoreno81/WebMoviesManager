@@ -24,6 +24,7 @@
             <c:choose>
                 <c:when test="${!mm.status}">
                     <form action="MoviesEdit" method="POST">
+                        <% if (response.getStatus() != 1) { %>
                         <div class="field">
                             <label for="pid">ID:</label>
                             <input type="text" id="mid" name="m_id" value= "${mm.movie.id}"readonly>
@@ -55,6 +56,7 @@
                         <div class="field">
                             <input type="submit" id="submit" name = "accion" value="Guardar">
                         </div>
+                        <% }%>
                     </form>
                 </c:when>
                 <c:otherwise> 

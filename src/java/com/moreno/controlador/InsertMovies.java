@@ -92,11 +92,11 @@ public class InsertMovies extends HttpServlet {
 
         try {                  
             mm.create(movie);
-            response.sendRedirect("InsertMovies");
+            request.getRequestDispatcher("index.html").forward(request, response);
 
         } catch (NumberFormatException ex) {
             mm.setErrors(true);
-            mm.setStatus("Valoracion '" + valoracion + "' no es un número válido");
+            mm.setStatus("Valoración '" + valoracion + "' no es un número válido.");
         } catch (IOException ex) {
             Throwable cause = ex.getCause();
             mm.setErrors(true);
