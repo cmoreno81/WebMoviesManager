@@ -54,24 +54,25 @@
                 </table>         
             </div>
         </section>
-
-        <footer class="footer">Edición y Borrado</footer>
-        <section class="content">
-            <div>
-                <label>ID: </label>
-                <form action="MoviesEdit" method="POST">
-                    <div class="field">
-                        <input type="number" id="id" name="m_id" value="${mm.movie.id}" required>
-                        <input type="submit" value="Editar" name = "accion">
-                    </div>
-                </form>
-                <form action="MoviesEdit" method="POST">
-                    <div class="field">
-                        <input type="number" id="id" name="m_id" value="${mm.movie.id}" required>
-                        <input type="submit" value="Borrar" name="accion">
-                    </div>
-                </form>
-            </div>
-        </section>
+        <c:if test="${!mm.errors}">
+            <footer class="footer">Edición y Borrado</footer>
+            <section class="content">
+                <div>
+                    <label>ID: </label>
+                    <form action="MoviesEdit" method="POST">
+                        <div class="field">
+                            <input type="number" id="id" name="m_id" value="${mm.movie.id}" required>
+                            <input type="submit" value="Editar" name = "accion">
+                        </div>
+                    </form>
+                    <form action="MoviesEdit" method="POST">
+                        <div class="field">
+                            <input type="number" id="id" name="m_id" value="${mm.movie.id}" required>
+                            <input type="submit" value="Borrar" name="accion">
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </c:if>
     </body>
 </html>
