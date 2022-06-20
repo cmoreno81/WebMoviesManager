@@ -28,11 +28,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Movies.findAll", query = "SELECT m FROM Movies m order by m.id ASC"),
-    @NamedQuery(name = "Movies.findById", query = "SELECT m FROM Movies m WHERE m.id = :id"),
+    @NamedQuery(name = "Movies.findById", query = "SELECT m FROM Movies m WHERE m.id = :id order by m.id ASC"),
     @NamedQuery(name = "Movies.findByTitulo", query = "SELECT m FROM Movies m WHERE m.titulo like :titulo"),
     @NamedQuery(name = "Movies.findByGenero", query = "SELECT m FROM Movies m WHERE m.genero like :genero"),
     @NamedQuery(name = "Movies.findByValoracion", query = "SELECT m FROM Movies m WHERE m.valoracion = :valoracion"),
-    @NamedQuery(name = "Movies.findByVisto", query = "SELECT m FROM Movies m WHERE m.visto = :visto and m.formato like :formato"),
+    @NamedQuery(name = "Movies.findByVisto", query = "SELECT m FROM Movies m WHERE m.visto = :visto and m.formato like :formato order by m.id ASC"),
     @NamedQuery(name = "Movies.findByFormato", query = "SELECT m FROM Movies m WHERE m.formato like :formato")})
 public class Movies implements Serializable {
 
