@@ -5,13 +5,13 @@
 --%>
 
 <%@page import="com.moreno.models.Genero"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <link rel="stylesheet" type="text/css" href="/MoviesManager/css/movies.css">  
-        <title>Insertar T铆tulo</title>
+        <title>Insertar T韙ulo</title>
     </head>
     <body>
         <header class="header">Insertar Registro </header>
@@ -23,7 +23,7 @@
                         <div class="field">
                             <label class = "field label" for="id">Formato:</label>
                             <select type="text" name="m_formato" id="formato"><br/>
-                                <option value="Pel铆culas">Pel铆culas</option>
+                                <option value="Pel韈ulas">Pel韈ulas</option>
                                 <option value="Series">Series</option>
                                 <option value="Documentales">Documentales</option>
                             </select>                         
@@ -33,25 +33,25 @@
                             <input type="text" id="titulo" name="m_titulo" value="${mm.movie.titulo}" required>
                         </div>
                         <div class="field">
-                            <label class = "field label">G茅nero:</label>
+                            <label class = "field label">G閚ero:</label>
                             <!-- <select class="form-control" id="genero" name="m_genero2">
                                 <c:forEach items="${mm.genero.values}" var="genero">
                                     <option value="${genero}">${mm.genero.value}</option>
                                 </c:foreach>
                             </select>-->
                              <select type="text" name="m_genero" id="genero"><br/>
-                                <option value="Acci贸n">Acci贸n</option>
+                                <option value="Acci髇">Acci髇</option>
                                 <option value="Aventuras">Aventuras</option>
-                                <option value="B茅lica">B茅lica</option>
-                                <option value="Ciencia Ficci贸n">Ciencia Ficci贸n</option>
+                                <option value="B閘ica">B閘ica</option>
+                                <option value="Ciencia Ficci髇">Ciencia Ficci髇</option>
                                 <option value="Comedia">Comedia</option>
                                 <option value="Drama">Drama</option>
-                                <option value="Rom谩ntica">Rom谩ntica</option>
+                                <option value="Rom醤tica">Rom醤tica</option>
                                 <option value="Terror">Terror</option>
                             </select>
                         </div>
                         <div class="field">
-                            <label class = "field label" for="valoracion">Valoraci贸n:</label>
+                            <label class = "field label" for="valoracion">Valoraci髇:</label>
                             <input type="number" id="valoracion" name="m_valoracion" value="${mm.movie.valoracion}">
                         </div>
                         <div class="field">

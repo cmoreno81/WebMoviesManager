@@ -4,12 +4,12 @@
     Author     : cristina
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
+        <meta charset="ISO-8859-1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="/MoviesManager/css/movies.css">  
         <title>Edit - Movies Manager</title>       
@@ -32,21 +32,21 @@
                         <div class="field">
                             <label for="pformato">Formato:</label>
                             <select type="text" name="m_formato" id="formato" value = "${mm.movie.formato}"><br/>
-                                <option value="Peliculas">PelÃ­culas</option>
+                                <option value="Películas">Películas</option>
                                 <option value="Series">Series</option>
                                 <option value="Documentales">Documentales</option>
                             </select>
                         </div>
                         <div class="field">
-                            <label for="ptitulo">TÃ­tulo:</label>
+                            <label for="ptitulo">Título:</label>
                             <input type="text" id="mtitulo" name="m_titulo" value="${mm.movie.titulo}" required>
                         </div>
                         <div class="field">
-                            <label for="pgenero">GÃ©nero:</label>
+                            <label for="pgenero">Género:</label>
                             <input type="text" id="mgenero" name="m_genero" value="${mm.movie.genero}">
                         </div>
                         <div class="field">
-                            <label for="pvaloracion">ValoraciÃ³n:</label>
+                            <label for="pvaloracion">Valoración:</label>
                             <input type="number" id="mvaloracion" name="m_valoracion" value="${mm.movie.valoracion}">
                         </div>
                         <div class="field">
