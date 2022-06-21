@@ -25,25 +25,25 @@
                     <c:choose>
                         <c:when test="${!mm.errors}">
                             <tr>
-                                <th></th>
+                                
                                 <th>Id</th>
                                 <th>Formato</th>
                                 <th>Titulo</th>
                                 <th>Genero</th>
                                 <th>Valoración</th>
                                 <th>Visto</th>
-                                <th></th>
+                               
                             </tr>
                             <c:forEach items="${resultados}" var="movie">
                                 <tr>
-                                    <td></td>
+                                    
                                     <td>${movie.id}</td>
                                     <td>${movie.formato}</td>
                                     <td>${movie.titulo}</td>
                                     <td>${movie.genero}</td>
                                     <td>${movie.valoracion}</td>
                                     <td>${movie.visto}</td> 
-                                    <td></td>    
+                                      
                                 </tr>    
                             </c:forEach> 
                         </c:when>

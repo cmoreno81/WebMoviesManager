@@ -70,14 +70,16 @@ public class MoviesEdit extends HttpServlet {
                     movie.setValoracion(valoracion);
                     movie.setVisto(visto);
                     mm.update(movie);
+                    response.setStatus(1);
                     mm.setStatus("Registro actualizado correctamente.");
-                    request.getRequestDispatcher("index.html").forward(request, response);
+                    request.getRequestDispatcher("moviesedit.jsp").forward(request, response);
                     break;
                 case "Borrar":
                     if (movie != null) {
                         mm.delete(movie);
+                        response.setStatus(1);
                         mm.setStatus("Registro borrado correctamente.");
-                        request.getRequestDispatcher("index.html").forward(request, response);
+                        request.getRequestDispatcher("moviesedit.jsp").forward(request, response);
                     } else {
                         request.getRequestDispatcher("moviesedit.jsp").forward(request, response);
                     }

@@ -92,7 +92,9 @@ public class InsertMovies extends HttpServlet {
 
         try {                  
             mm.create(movie);
-            request.getRequestDispatcher("index.html").forward(request, response);
+            response.setStatus(1);
+            mm.setStatus("Registro insertado correctamente.");
+            request.getRequestDispatcher("moviesedit.jsp").forward(request, response);
 
         } catch (NumberFormatException ex) {
             mm.setErrors(true);
