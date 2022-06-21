@@ -61,7 +61,7 @@ public class MoviesEdit extends HttpServlet {
                     String genero = request.getParameter("m_genero");
                     valoracion = Integer.parseInt(request.getParameter("m_valoracion"));
                     boolean visto = Boolean.valueOf(request.getParameter("m_visto"));
-                    visto = (visto);
+                    valoracion = (visto)? valoracion : 0;
                     String formato = request.getParameter("m_formato");
 
                     movie.setFormato(formato);

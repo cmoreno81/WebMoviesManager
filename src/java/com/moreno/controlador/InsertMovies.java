@@ -86,7 +86,7 @@ public class InsertMovies extends HttpServlet {
         String genero = req.getParameter("m_genero");
         valoracion = (!req.getParameter("m_valoracion").equals("")) ? Integer.parseInt(req.getParameter("m_valoracion")) : valoracion;
         boolean visto = Boolean.valueOf(request.getParameter("m_visto"));
-        visto = (visto);
+        valoracion = (visto)? valoracion : 0;
         String formato = req.getParameter("m_formato");
         Movies movie = new Movies(titulo, genero, valoracion, visto, formato);
 

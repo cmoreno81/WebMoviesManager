@@ -3,6 +3,8 @@
     Created on : 1 jun. 2022, 17:52:57
     Author     : cristina
 --%>
+<%@page import="com.moreno.models.Movies"%>
+<%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 
