@@ -8,6 +8,7 @@ import com.moreno.models.Movies;
 import com.moreno.dao.MoviesManager;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -80,6 +81,9 @@ public class MoviesList extends HttpServlet {
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
         String formato = request.getParameter("m_formato");
+        String filtro = request.getParameter("m_filtros");
+        String valueFiltro = request.getParameter("m_filtro");
+
         List<Movies> resultados = null;
         if (accion.equals("Buscar vistas") || accion.equals("Buscar pendientes")) {
             if (accion.equals("Buscar vistas")) {
@@ -89,7 +93,20 @@ public class MoviesList extends HttpServlet {
             }
         }
 
+        if (accion.equals("Buscar")) {
+            resultados = filtrar(filtro, valueFiltro, resultados);
+        }
+
         switch (accion) {
+            case "Buscar":
+                if (isResults(resultados)) {
+                    request.setAttribute("resultados", resultados);
+                    request.getRequestDispatcher("listar.jsp").forward(request, response);
+                } else {
+                    response.setStatus(1);
+                    request.getRequestDispatcher("moviesedit.jsp").forward(request, response);
+                }
+                break;
             case "Buscar todos":
                 resultados = mm.findAllMovies();
                 isResults(resultados);
@@ -110,13 +127,42 @@ public class MoviesList extends HttpServlet {
 
     }
 
-    private void isResults(List<Movies> resultados) {
-        if (!resultados.isEmpty()) {
+    private boolean isResults(List<Movies> resultados) {
+        boolean isResults = false;
+        if (!resultados.isEmpty() || resultados.size() > 0) {
             mm.setMovies(resultados);
+            isResults = true;
         } else {
             mm.setStatus("No existen títulos en la base de datos.");
             mm.setErrors(true);
         }
+
+        return isResults;
+    }
+
+    private List<Movies> filtrar(String filtro, String value, List<Movies> resultados) {
+        switch (filtro) {
+            case "id":
+                resultados = new ArrayList<>();
+                try {
+                    Movies movie = mm.findMovie(Integer.parseInt(value));
+                    if (movie != null) {
+                        resultados.add(movie);
+                    }
+                } catch (NumberFormatException ex) {
+                    mm.setErrors(true);
+                    mm.setStatus("El ID: '" + value + "' no es un número válido.");
+                }
+                break;
+            case "titulo":
+                resultados = mm.findMoviesByName(value);
+                break;
+            default:
+                resultados = mm.findMoviesByGenero(value);
+                break;
+        }
+        return resultados;
+
     }
 
 }

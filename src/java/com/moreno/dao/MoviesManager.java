@@ -63,6 +63,10 @@ public class MoviesManager {
         return moviesFacade.findMoviesByFormato(formato);
     }
 
+    public List<Movies> findMoviesByGenero(String genero) {
+        return moviesFacade.findMoviesByGenero(genero);
+    }
+
     public List<Movies> findMoviesByVisto(boolean visto, String formato) {
         return moviesFacade.findMoviesByVisto(visto, formato);
     }
