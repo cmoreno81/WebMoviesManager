@@ -18,7 +18,7 @@
     </head>
     <body>
         <header class="header">Listado </header>
-        <nav class="nav"><a href="index.html">Inicio</a></nav>
+        <nav class="nav"><a href="menu.html">Inicio</a></nav>
         <section class="content">
             <div class="col-md-8">
                 <table aling = "center" border="1" class = "table">

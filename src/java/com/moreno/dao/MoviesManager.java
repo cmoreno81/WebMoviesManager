@@ -6,6 +6,8 @@ package com.moreno.dao;
 
 import com.moreno.models.Genero;
 import com.moreno.models.Movies;
+import com.moreno.models.Roles;
+import com.moreno.models.Usuario;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -25,6 +27,8 @@ public class MoviesManager {
     @EJB
     private MoviesFacade moviesFacade;
 
+    private Usuario usuario;
+    private Roles rol;
     private List<Movies> movies;
     private Genero genero;
     private Movies movie;
@@ -109,6 +113,54 @@ public class MoviesManager {
 
     public void setGenero(Genero genero) {
         this.genero = genero;
+    }
+
+    public void create(Usuario user) {
+        moviesFacade.create(user);
+    }
+
+    public void update(Usuario user) {
+        moviesFacade.update(user);
+    }
+
+    public void delete(Usuario user) {
+        moviesFacade.delete(user);
+    }
+
+    public Usuario findByUser(String usuario) {
+        return moviesFacade.findUsuarioByName(usuario);
+    }
+
+    public void create(Roles rol) {
+        moviesFacade.create(rol);
+    }
+
+    public void update(Roles rol) {
+        moviesFacade.update(rol);
+    }
+
+    public void delete(Roles rol) {
+        moviesFacade.delete(rol);
+    }
+
+    public Roles findRoles(int id) {
+        return moviesFacade.findRoles(id);
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Roles getRol() {
+        return rol;
+    }
+
+    public void setRol(Roles rol) {
+        this.rol = rol;
     }
 
 }

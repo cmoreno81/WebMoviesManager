@@ -5,6 +5,8 @@
 package com.moreno.dao;
 
 import com.moreno.models.Movies;
+import com.moreno.models.Roles;
+import com.moreno.models.Usuario;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -82,6 +84,49 @@ public class MoviesFacade {
 
     @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
     public void validateMovie(@Valid Movies movie) {
+    }
+    
+    public void create(@Valid Usuario user) {
+        em.persist(user);
+    }
+
+    public void update(@Valid Usuario user) {
+        em.merge(user);
+    }
+
+    public void delete(Usuario user) {
+        if (!em.contains(user)) {
+            user = em.merge(user);
+        }
+        em.remove(user);
+    }
+
+    public Usuario findUsuario(int id) {
+        return em.find(Usuario.class, id);
+    }
+    public Usuario findUsuarioByName(String usuario) {
+        Query userNameQuery = em.createNamedQuery("Usuario.findByUsuario");
+        userNameQuery.setParameter("usuario", usuario);
+        return (Usuario) userNameQuery.getSingleResult();
+    }
+    
+     public void create(@Valid Roles rol) {
+        em.persist(rol);
+    }
+
+    public void update(@Valid Roles rol) {
+        em.merge(rol);
+    }
+
+    public void delete(Roles rol) {
+        if (!em.contains(rol)) {
+            rol = em.merge(rol);
+        }
+        em.remove(rol);
+    }
+
+    public Roles findRoles(int id) {
+        return em.find(Roles.class, id);
     }
 
 }
