@@ -18,7 +18,7 @@
     </head>
     <body>
         <header class="header">Edit </header>
-        <nav class="nav"><a href="menu.html">Inicio</a></nav>
+        <nav class="nav"><a href="menu.jsp">Inicio</a></nav>
         <section class="content">
             <c:if test="${mm.status !=null}">
                 <div class="${ (mm.errors)?'error':'info'}">${mm.status}</div>

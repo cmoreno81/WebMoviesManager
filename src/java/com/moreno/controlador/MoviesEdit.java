@@ -6,6 +6,7 @@ package com.moreno.controlador;
 
 import com.moreno.models.Movies;
 import com.moreno.dao.MoviesManager;
+import com.moreno.models.Usuario;
 import java.io.IOException;
 import javax.inject.Inject;
 import javax.persistence.OptimisticLockException;
@@ -14,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolationException;
 
 /**
@@ -37,6 +39,15 @@ public class MoviesEdit extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        //Usuario en sesion
+        HttpSession sesion = request.getSession();
+        Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+        mm.setUsuario(usuario);
+        //Reseteamos valores para la navegación
+        mm.setErrors(false);
+        mm.setStatus(null);
+        
         Integer valoracion = 0;
         //Recogemos el id introducido
         String mid = request.getParameter("m_id");
@@ -45,8 +56,9 @@ public class MoviesEdit extends HttpServlet {
         if (movie == null) {
             mm.setStatus("Registro '" + mid + "' no encontrado.");
             response.setStatus(1);
+            request.getRequestDispatcher("moviesedit.jsp").forward(request, response);
         } else {
-            mm.setMovie(movie);
+            mm.setMovie(movie);         
         }
 
         String accion = request.getParameter("accion");

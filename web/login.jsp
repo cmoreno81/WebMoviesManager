@@ -9,8 +9,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/MoviesManager/css/movies.css"> 
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <link rel="stylesheet" type="text/css" href="/MoviesManager/css/movies.css">
         <title>Login</title>
     </head>
     <body>
@@ -21,12 +21,15 @@
             <c:when test="${!mm.status}">
                 <section class="content">
                     <form name="login" action="Login" method="POST">
-                        <label class= "field label" for="usuario">Usuario:</label>
+                        <label class= "field" for="usuario">Usuario:</label>
                         <input type="text" name="m_usuario"/><br>
-                        <label class= "field label" for="pass">Contraseña:</label>
+                        <label class= "field" for="pass">Contraseña:</label>
                         <input type="password" name="m_pass"/><br>
-                        <input type="submit" value="Nuevo Usuario" name= "accion" />
-                        <input type="submit" value="Login" name= "accion" />
+                        <div class="submit_content">
+                            <input type="submit" value="Nuevo Usuario" name= "accion" />
+                            <input type="submit" value="Login" name= "accion" />
+                        </div>
+                        
                     </form>
                 </section>
             </c:when>

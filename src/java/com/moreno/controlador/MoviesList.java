@@ -6,6 +6,7 @@ package com.moreno.controlador;
 
 import com.moreno.models.Movies;
 import com.moreno.dao.MoviesManager;
+import com.moreno.models.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -79,6 +81,15 @@ public class MoviesList extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //Usuario en sesion
+        HttpSession sesion = request.getSession();
+        Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+        mm.setUsuario(usuario);
+        
+        //Reseteamos valores para la navegación
+        mm.setErrors(false);
+        mm.setStatus(null);
+
         String accion = request.getParameter("accion");
         String formato = request.getParameter("m_formato");
         String filtro = request.getParameter("m_filtros");
@@ -99,27 +110,29 @@ public class MoviesList extends HttpServlet {
 
         switch (accion) {
             case "Buscar":
-                if (isResults(resultados)) {
+                if (isResults(resultados, response)) {
                     request.setAttribute("resultados", resultados);
                     request.getRequestDispatcher("listar.jsp").forward(request, response);
                 } else {
                     response.setStatus(1);
+                    mm.setStatus("Registro '" + valueFiltro + "' no encontrado.");
                     request.getRequestDispatcher("moviesedit.jsp").forward(request, response);
                 }
                 break;
             case "Buscar todos":
                 resultados = mm.findAllMovies();
-                isResults(resultados);
+                isResults(resultados, response);
                 request.setAttribute("resultados", resultados);
+                request.setAttribute("usuario", usuario);
                 request.getRequestDispatcher("listar.jsp").forward(request, response);
                 break;
             case "Buscar vistas":
-                isResults(resultados);
+                isResults(resultados, response);
                 request.setAttribute("resultados", resultados);
                 request.getRequestDispatcher("listar.jsp").forward(request, response);
                 break;
             case "Buscar pendientes":
-                isResults(resultados);
+                isResults(resultados, response);
                 request.setAttribute("resultados", resultados);
                 request.getRequestDispatcher("listar.jsp").forward(request, response);
                 break;
@@ -127,12 +140,14 @@ public class MoviesList extends HttpServlet {
 
     }
 
-    private boolean isResults(List<Movies> resultados) {
+    private boolean isResults(List<Movies> resultados, HttpServletResponse response) {
         boolean isResults = false;
         if (!resultados.isEmpty() || resultados.size() > 0) {
             mm.setMovies(resultados);
+            response.setStatus(0);
             isResults = true;
         } else {
+            response.setStatus(1);
             mm.setStatus("No existen títulos en la base de datos.");
             mm.setErrors(true);
         }
@@ -148,7 +163,11 @@ public class MoviesList extends HttpServlet {
                     Movies movie = mm.findMovie(Integer.parseInt(value));
                     if (movie != null) {
                         resultados.add(movie);
+                    } else {
+                        mm.setErrors(true);
+                        mm.setStatus("El ID: '" + value + "' no existe.");
                     }
+
                 } catch (NumberFormatException ex) {
                     mm.setErrors(true);
                     mm.setStatus("El ID: '" + value + "' no es un número válido.");

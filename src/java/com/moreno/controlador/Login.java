@@ -8,7 +8,6 @@ import com.moreno.dao.MoviesManager;
 import com.moreno.models.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -89,7 +88,7 @@ public class Login extends HttpServlet {
             case "Login":
                 verificado = verificarUsuario(request, response);
                 if (verificado) {
-                    request.getRequestDispatcher("menu.html").forward(request, response);
+                    request.getRequestDispatcher("menu.jsp").forward(request, response);
                 } else {
                     request.getRequestDispatcher("login.jsp").forward(request, response);
                 }
@@ -114,7 +113,7 @@ public class Login extends HttpServlet {
                     mm.create(newUser2);
                     response.setStatus(1);
                     mm.setStatus("Usuario insertado correctamente.");
-                    request.getRequestDispatcher("menu.html").forward(request, response);
+                    request.getRequestDispatcher("menu.jsp").forward(request, response);
                 } else {
                     mm.setStatus("Las contraseñas no coinciden.");
                     mm.setErrors(true);
@@ -138,6 +137,9 @@ public class Login extends HttpServlet {
                     verificado = true;
                     sesion = request.getSession();
                     sesion.setAttribute("usuario", user);
+                    request.setAttribute("usuario", user);
+                    
+                    
                 }
             }
         } catch (Exception ex) {

@@ -23,27 +23,26 @@
             <div class="col-md-8">
                 <table aling = "center" border="1" class = "table">
                     <div class="field">
-                        <label class = "field label" for="usuario">Usuario:</label>
+                        <label class = "label" for="usuario">Usuario:</label>
                         <input type="text" id="usuario" name="m_usuario" value="${mm.usuario.usuario}" required>
-
                     </div> 
                     <div class="field">
-                        <label class = "field label" for="pass">Contraseña:</label>
+                        <label class = "label" for="pass">Contraseña:</label>
                         <input type="password" id="pass" name="m_pass" value="${mm.usuario.password}" required>
                     </div>
                     <div class="field">
-                        <label class = "field label" for="pass">Repita Contraseña:</label>
-                        <input type="password" id="pass" name="m_pass2" value="${mm.usuario.password}" required>
+                        <label class = "label" for="pass">Confirme Contraseña:</label>
+                        <input type="password" id="pass" name="m_pass2" value="" required>
                     </div>
                     <div class="field">
-                        <label class = "field label">Estado:</label>
+                        <label class = "label">Estado:</label>
                         <select type="text" name="m_estado" id="estado"><br/>
                             <option value="Activado">Activado</option>
                             <option value="Desactivado">Desactivado</option>
                         </select>
                     </div>
                     <div class="field">
-                        <label class = "field label">Rol:</label>
+                        <label class = "label">Rol:</label>
                         <select type="text" name="m_rol" id="rol"><br/>
                             <option value="Administrador">Administrador</option>
                             <option value="Usuario">Usuario</option>

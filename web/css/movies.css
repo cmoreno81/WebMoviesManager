@@ -53,12 +53,22 @@
 .data {
     padding: 3px
 }
-.field label {
+.field {
     display: inline-block;
     width: 140px;
-    margin: 2px
+    margin: 2px;
+    margin-bottom: 10px;
 }
-.field input {
+.label {
     display: inline-block;
-    margin: 2px
+    width: 140px;
+    margin: 2px;
+    margin-bottom: 10px;
+} 
+
+.submit_content{
+    display: block;
+    margin-left: 148px;
+    margin-top: 9px;
+    
 }

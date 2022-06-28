@@ -8,21 +8,22 @@ import com.moreno.models.Genero;
 import com.moreno.models.Movies;
 import com.moreno.models.Roles;
 import com.moreno.models.Usuario;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 /**
  *
  * @author cristina
  */
-//Ámbito 'RequestScope': los objetos creados con este ámbito solo existen 
+//Ámbito 'RequestScoped': los objetos creados con este ámbito solo existen 
 //mientras lo haga la petición HTTP a la que están asociados
-// Otros ámbitos: @SessionScope, @ApplicationScoped
-@RequestScoped
+// Otros ámbitos: @SessionScoped, @ApplicationScoped
+@SessionScoped
 @Named("mm")
-public class MoviesManager {
+public class MoviesManager implements Serializable{
 
     @EJB
     private MoviesFacade moviesFacade;
@@ -37,6 +38,14 @@ public class MoviesManager {
 
     public MoviesManager() {
 
+    }
+
+    public MoviesFacade getMoviesFacade() {
+        return moviesFacade;
+    }
+
+    public void setMoviesFacade(MoviesFacade moviesFacade) {
+        this.moviesFacade = moviesFacade;
     }
 
     public void create(Movies movie) {

@@ -15,7 +15,7 @@
     </head>
     <body>
         <header class="header">Insertar Registro </header>
-        <nav class="nav"><a href="menu.html">Inicio</a></nav>
+        <nav class="nav"><a href="menu.jsp">Inicio</a></nav>
         <section class="content">
             <form action="InsertMovies" method="POST">
                 <div class="col-md-8">
